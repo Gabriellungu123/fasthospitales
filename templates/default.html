@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',path='css/style.css') }}">
+    <title>{%block title%} Hospitales {%endblock%}</title>
+</head>
+<body>
+<div class="botone">
+  {%if menu%}
+      {%if menu.home %}
+        <a href="{{ url_for('get_hospital') }}">VER TABLA </a>
+      {%endif%}
+      {%if menu.add%}
+        <ul>
+          <li><a href="{{ url_for('get_hospital') }}">Ver hospitales</a></li>
+          <li><a href=>Añadir hospitales</a></li>
+          <li><a href="">Eliminar hospitales</a></li>
+          <li><a href="">Actualizar hospitales</a></li>
+        </ul>
+      {%endif%}
+
+  {%endif%}
+</div>
+{% block content %}   
+   <h1 class="TABLA">Tabla Hospitales</h1>
+  <div class="TABLA">
+    
+   
+   <table>
+    <tr>
+      <th>id</th>
+      <th>nombre</th>
+      <th>numero de Pacientes</th>
+    </tr>
+    <tr>
+      {%if hospitales%}
+        {%for hospital in hospitales%}
+          <tr>
+            <td>{{hospital.id}}</td>
+            <td>{{hospital.nombre}}</td>
+            <td>{{hospital.numero_pacientes}}</td>
+          </tr>
+        {%endfor%}
+      {%else%}
+    </tr>
+       
+    <tr>
+      <td colspan="4"> No hay hospitales registrados</td>
+    </tr>
+    {%endif%}
+   </table>
+  </div>
+{% endblock %}
+
+
+
+
+
+
+    <footer>{%block footer%} Pagina hecha por Gabriel Lungu {%endblock%}</footer>
+    
+</body>
+</html>
